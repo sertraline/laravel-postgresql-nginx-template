@@ -24,10 +24,11 @@ api: contains actual Laravel project
 5. Run containers: `docker compose up`  
 6. We need to set permissions for laravel to work properly:  
     * `docker exec -it laravelapp.php-fpm /bin/bash`  
-    * `chown -R www-data:www-data storage/`  
+    * `chown -R www-data:www-data storage/` 
+    * `chown -R www-data:www-data bootstrap/cache` 
     * `chmod -Rf 0777 storage`  
     * `chmod -Rf 0775 bootstrap/cache`  
 7. Inside the same docker container, initialize composer:
     * `php composer-setup.php`
     * Install composer dependencies: `./composer.phar install`  
-
+8. Run `php artisan optimize`
