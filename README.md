@@ -1,6 +1,6 @@
 # How to start
 
-dev-server: contains docker images and settings  
+server: contains settings  
 api: contains actual Laravel project
 
 1. cd dev-server  
@@ -9,13 +9,14 @@ api: contains actual Laravel project
 2. Enter application directory: `cd api`  
     * `cp .env.example .env`  
     * fill the variables  
-    * app key can be set with `base64:<b64 key you've generated>`  
+    * app key can be set with `base64:<b64 key you've generated>` or generated with `php artisan key:generate` later
 3. Run containers: `docker compose up`  
-4. Inside the same docker container, initialize composer:
+4. Inside the php-fpm docker container, initialize composer:
+    * `docker exec -it laravelapp.php-fpm /bin/bash`
     * `php composer-setup.php`
-    * Install composer dependencies: `./composer.phar install`  
-5. Run `php artisan optimize`
-
+    * Install composer dependencies: `./composer.phar install`
+    * Optionally: `./composer.phar update`
+6. Run `php artisan optimize`
 
 # Backups and maintenance
 To back up the postgresql volume, run the following command:  
